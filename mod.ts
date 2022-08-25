@@ -44,6 +44,42 @@ const GitLab = (options: GitLabOptions) => {
         );
       },
     },
+    GroupMilestones: {
+      all(groupId: string) {
+        return fetchApi(`/groups/${groupId}/milestones`);
+      },
+      findOne(groupId: string, milestoneId: string) {
+        return fetchApi(`/groups/${groupId}/milestones/${milestoneId}`);
+      },
+      create(groupId: string, milestone: GitlabMilestone) {
+        return fetchApi(`/groups/${groupId}/milestones`, milestone, "POST");
+      },
+      update(groupId: string, milestoneId: string, update: GitlabMilestone) {
+        return fetchApi(
+          `/groups/${groupId}/milestones/${milestoneId}`,
+          update,
+          "PUT"
+        );
+      },
+    },
+    Issues: {
+      all(projectId: string) {
+        return fetchApi(`/projects/${projectId}/issues`);
+      },
+      findOne(projectId: string, issueIid: string) {
+        return fetchApi(`/projects/${projectId}/issues/${issueIid}`);
+      },
+      create(projectId: string, issue: GitLabIssue) {
+        return fetchApi(`/projects/${projectId}/issues`, issue, "POST");
+      },
+      update(projectId: string, issueIid: string, update: GitLabIssue) {
+        return fetchApi(
+          `/projects/${projectId}/issues/${issueIid}`,
+          update,
+          "PUT"
+        );
+      },
+    },
   };
 };
 
